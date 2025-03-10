@@ -1,0 +1,2 @@
+alert tcp any any -> any any (msg:"Possible DDoS Attack - SYN Flood"; flags:S; threshold:type threshold, track by_src, count 20, seconds 10; sid:200001; rev:1;)
+alert udp any any -> any any (msg:"Possible UDP Flood Attack"; threshold:type threshold, track by_src, count 100, seconds 10; sid:200002; rev:1;)

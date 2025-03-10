@@ -1,0 +1,4 @@
+*.rules
+!ddos.rules
+!exfiltration.rules
+!malware.rules
