@@ -4,12 +4,16 @@ services:
     container_name: suricata
     network_mode: "host"
     user: root
+    privileged: true
+    cap_add:
+    - NET_ADMIN
+    - NET_RAW
     volumes:
       - ./Suricata/suricata.yaml:/etc/suricata/suricata.yaml
       - ./Suricata/rules:/var/lib/suricata/rules
       - ./logs:/var/log/suricata
       - ./Suricata/update_rules.sh:/update_rules.sh  # Script di aggiornamento regole
-    entrypoint: ["/bin/sh", "-c", "suricata -c /etc/suricata/suricata.yaml -i wlan0"]
+    entrypoint: ["/bin/sh", "-c", "suricata -c /etc/suricata/suricata.yaml -i eno1 --runmode=autofp"]
     restart: unless-stopped
 
   zeek:

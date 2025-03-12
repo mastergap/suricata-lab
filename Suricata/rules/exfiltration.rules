@@ -1,2 +1,1 @@
 alert tcp any any -> any any (msg:"Possible Data Exfiltration via HTTP"; content:"POST"; http_method; threshold:type limit, track by_src, count 10, seconds 60; sid:300001; rev:1;)
-alert ip any any -> any any (msg:"Possible Large Data Transfer"; dsize:>100000; sid:300002; rev:1;)

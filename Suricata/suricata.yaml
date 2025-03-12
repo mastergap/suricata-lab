@@ -1,9 +1,20 @@
 %YAML 1.1
 ---
-vars:
-  address-groups:
-    HOME_NET: "[192.168.1.0/24]"  # Modifica in base alla tua rete locale
-    EXTERNAL_NET: "!$HOME_NET"
+af-packet:
+  - interface: eno1
+    threads: auto
+    cluster-id: 99
+    cluster-type: cluster_flow
+    defrag: yes
+    use-mmap: yes
+    ring-size: 200000
+
+default-rule-path: /var/lib/suricata/rules
+
+rule-files:
+  - ddos.rules
+  - exfiltration.rules
+  - malware.rules
 
 outputs:
   - eve-log:
